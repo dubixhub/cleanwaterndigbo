@@ -37,7 +37,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Our Office',
-      details: ['123 Water Project Road', 'Independence Layout', 'Enugu State, Nigeria'],
+      details: ['4616 Stargazer Drive, Plano Texas 75024 Texas, USA'],  
     },
     {
       icon: Phone,
@@ -226,13 +226,13 @@ const Contact = () => {
               Find Us
             </h2>
             <p className="text-muted-foreground">
-              Visit our office in Enugu State or view our operational areas across Southeast Nigeria.
+              Visit our office in Plano, Texas.
             </p>
           </div>
 
           <div className="rounded-2xl overflow-hidden shadow-lg h-[400px] bg-muted">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.63513574668!2d7.344972849999999!3d6.4420984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1044a463788e61e1%3A0x1a2d2d5ef5b8e8e0!2sEnugu%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.8959898234043!2d-96.7316!3d33.0173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c23f5e5e5e5e5%3A0x0!2s4616%20Stargazer%20Drive%2C%20Plano%2C%20TX%2075024!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
               width="100%"
               height="100%"
               style={{ border: 0 }}
