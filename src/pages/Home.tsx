@@ -220,7 +220,7 @@ const Home = () => {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-0" />
+        <div className="absolute inset-0 bg-black/70 z-0" />
         
         {/* Decorative Elements */}
         <div className="decorator-circle absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl z-5" />
