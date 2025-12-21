@@ -96,7 +96,7 @@ diseases and improve overall public health
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Chief Emeka Okonkwo, a native of Enugu State, founded Clean Water Ndigbo after witnessing firsthand the devastating effects of water scarcity in his home village. Growing up, he watched his mother and sisters trek miles daily to fetch water from a distant, often contaminated stream.
+                  Mrs Ngozi Cordelia Nwankwo, a native of Enugu State, founded Clean Water Ndigbo after witnessing firsthand the devastating effects of water scarcity in his home village. Growing up, he watched his mother and sisters trek miles daily to fetch water from a distant, often contaminated stream.
                 </p>
                 <p>
                   After completing his education in Environmental Engineering at the University of Nigeria, Nsukka, and gaining experience with international development organizations, Chief Okonkwo returned home with a mission: to ensure no Igbo community would suffer from lack of clean water.
@@ -104,7 +104,7 @@ diseases and improve overall public health
                 <p className="italic border-l-4 border-primary pl-4 py-2 bg-primary/5 rounded-r-lg">
                   "Water is life. When we give a community clean water, we give them health, dignity, and hope for a better future. This is my life's work, and together, we will reach every Igbo community in need."
                 </p>
-                <p className="font-medium text-foreground">— Chief Emeka Okonkwo, Founder & Executive Director</p>
+                <p className="font-medium text-foreground">— Mrs Ngozi Cordelia Nwankwo, Founder & Executive Director</p>
               </div>
             </div>
           </div>
