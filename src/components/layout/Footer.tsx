@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Droplets, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import logo from '@/images/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,13 +12,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                <Droplets className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <span className="font-serif font-bold text-xl">
-                Clean Water <span className="text-primary">Ndigbo</span>
-              </span>
+            <Link to="/" className="inline-block mb-4">
+              <img src={logo} alt="Clean Water Ndigbo" className="w-36 md:w-44 lg:w-48 h-auto object-contain" />
             </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Bringing clean, safe, and sustainable water solutions to Igbo communities across Nigeria.
