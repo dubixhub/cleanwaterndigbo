@@ -1,11 +1,25 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Droplets, Users, MapPin, Heart, ArrowRight, CheckCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import getcleanwater from '@/images/getcleanwater.jpeg';
 import communitywater from '@/images/communitywater.jpg';
+import mrsngozi from '@/images/mrsngozi.jpeg';
 
 
 const Home = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const heroImages = [getcleanwater, communitywater, mrsngozi];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   const impactStats = [
     { icon: Droplets, value: '150+', label: 'Water Projects' },
     { icon: Users, value: '50,000+', label: 'Lives Impacted' },
@@ -194,47 +208,57 @@ const Home = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center gradient-water overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="decorator-circle absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-        <div className="decorator-circle absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <section 
+        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroImages[currentImageIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          transition: 'background-image 1s ease-in-out',
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50 z-0" />
         
-        <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="hero-subtitle inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
-                <Droplets className="w-4 h-4" />
-                Clean Water for All
-              </span>
-              <h1 className="hero-title font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
-                Bringing <span className="text-gradient">Clean Water</span> to Igbo Communities
-              </h1>
-              <p className="hero-subtitle text-lg text-muted-foreground mb-8 max-w-xl">
-                Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.
-              </p>
-              <div className="hero-buttons flex flex-wrap gap-4">
-                <Link to="/donate" className="btn-primary transition-all duration-300 hover:shadow-lg hover:scale-105">
-                  Donate Now
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link to="/about" className="btn-secondary transition-all duration-300 hover:shadow-lg hover:scale-105">
-                  Learn More
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative hidden lg:block">
-              <div className="hero-image relative z-10 rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={getcleanwater}
-                  alt="African children drinking clean water"
-                  className="w-full h-[500px] object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-primary rounded-2xl -z-0 animate-pulse" />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-secondary rounded-2xl -z-0 animate-pulse" />
-            </div>
+        {/* Decorative Elements */}
+        <div className="decorator-circle absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl z-5" />
+        <div className="decorator-circle absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-5" />
+        
+        <div className="container-custom relative z-10 text-center max-w-3xl">
+          <span className="hero-subtitle inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary/90 rounded-full text-primary-foreground text-sm font-medium mb-6">
+            <Droplets className="w-4 h-4" />
+            Clean Water for All
+          </span>
+          <h1 className="hero-title font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            Bringing <span className="text-yellow-300">Clean Water</span> to Igbo Communities
+          </h1>
+          <p className="hero-subtitle text-lg text-gray-100 mb-8">
+            Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.
+          </p>
+          <div className="hero-buttons flex flex-wrap gap-4 justify-center">
+            <Link to="/donate" className="btn-primary transition-all duration-300 hover:shadow-lg hover:scale-105">
+              Donate Now
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/about" className="btn-secondary transition-all duration-300 hover:shadow-lg hover:scale-105">
+              Learn More
+            </Link>
           </div>
+        </div>
+
+        {/* Image Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentImageIndex ? 'bg-white w-8' : 'bg-white/50'
+              }`}
+              aria-label={`Go to image ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
