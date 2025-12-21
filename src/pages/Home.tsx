@@ -2,15 +2,16 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Droplets, Users, MapPin, Heart, ArrowRight, CheckCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
-import getcleanwater from '@/images/getcleanwater.jpeg';
+import cleanwater1 from '@/images/cleanwater1.jpg';
+import cleanwater2 from '@/images/cleanwater2.jpg';
+import cleanwater3 from '@/images/cleanwater3.jpg';
 import communitywater from '@/images/communitywater.jpg';
-import mrsngozi from '@/images/mrsngozi.jpeg';
 
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const heroImages = [getcleanwater, communitywater, mrsngozi];
+  const heroImages = [cleanwater1, cleanwater2, cleanwater3, communitywater];
 
   useEffect(() => {
     const interval = setInterval(() => {
