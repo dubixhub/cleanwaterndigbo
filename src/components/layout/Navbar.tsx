@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Droplets } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import logo from '@/images/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +22,8 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Droplets className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <span className="font-serif font-bold text-lg md:text-xl text-foreground">
-              Cleanwater<span className="text-primary">ndigbo</span>
-            </span>
+          <Link to="/" className="group">
+            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[200px] h-auto group-hover:scale-110 transition-transform" />
           </Link>
 
           {/* Desktop Navigation */}
