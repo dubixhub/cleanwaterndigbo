@@ -1,0 +1,380 @@
+import { Link } from 'react-router-dom';
+import { Droplets, Users, MapPin, Heart, ArrowRight, CheckCircle } from 'lucide-react';
+import Layout from '@/components/layout/Layout';
+import getcleanwater from '@/images/getcleanwater.jpeg';
+import communitywater from '@/images/communitywater.jpg';
+
+
+const Home = () => {
+  const impactStats = [
+    { icon: Droplets, value: '150+', label: 'Water Projects' },
+    { icon: Users, value: '50,000+', label: 'Lives Impacted' },
+    { icon: MapPin, value: '75+', label: 'Communities Served' },
+    { icon: Heart, value: '1,000+', label: 'Volunteers' },
+  ];
+
+  const features = [
+    {
+      title: 'Borehole Construction',
+      description: 'Building sustainable boreholes to provide clean groundwater to rural communities.',
+    },
+    {
+      title: 'Water Purification',
+      description: 'Installing filtration systems to ensure water safety and quality standards.',
+    },
+    {
+      title: 'Community Education',
+      description: 'Teaching hygiene practices and water conservation to local communities.',
+    },
+    {
+      title: 'Maintenance Programs',
+      description: 'Training locals to maintain and repair water infrastructure independently.',
+    },
+  ];
+
+  return (
+    <Layout>
+      <style>{`
+        @keyframes slideUpIn {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(60px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-60px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            background-position: -1000px 0;
+          }
+          100% {
+            background-position: 1000px 0;
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+          }
+        }
+
+        .hero-title {
+          animation: slideUpIn 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+          animation: slideUpIn 0.8s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+          animation: slideUpIn 0.8s ease-out 0.4s both;
+        }
+
+        .hero-image {
+          animation: slideInRight 0.8s ease-out 0.3s both;
+        }
+
+        .stat-item {
+          animation: scaleIn 0.6s ease-out;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0s; }
+        .stat-item:nth-child(2) { animation-delay: 0.1s; }
+        .stat-item:nth-child(3) { animation-delay: 0.2s; }
+        .stat-item:nth-child(4) { animation-delay: 0.3s; }
+
+        .about-image {
+          animation: slideInLeft 0.8s ease-out;
+        }
+
+        .about-content {
+          animation: slideInRight 0.8s ease-out;
+        }
+
+        .feature-card {
+          animation: fadeIn 0.6s ease-out;
+          transition: all 0.3s ease;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0s; }
+        .feature-card:nth-child(2) { animation-delay: 0.1s; }
+        .feature-card:nth-child(3) { animation-delay: 0.2s; }
+        .feature-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover .feature-icon {
+          animation: float 1.5s ease-in-out infinite;
+        }
+
+        .feature-icon {
+          transition: all 0.3s ease;
+        }
+
+        .cta-content {
+          animation: slideUpIn 0.8s ease-out;
+        }
+
+        .stat-icon {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .decorator-circle {
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        .card-item {
+          animation: fadeIn 0.6s ease-out;
+        }
+
+        .card-item:nth-child(1) { animation-delay: 0s; }
+        .card-item:nth-child(2) { animation-delay: 0.15s; }
+        .card-item:nth-child(3) { animation-delay: 0.3s; }
+        .card-item:nth-child(4) { animation-delay: 0.45s; }
+      `}</style>
+
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center gradient-water overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="decorator-circle absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+        <div className="decorator-circle absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="hero-subtitle inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
+                <Droplets className="w-4 h-4" />
+                Clean Water for All
+              </span>
+              <h1 className="hero-title font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+                Bringing <span className="text-gradient">Clean Water</span> to Igbo Communities
+              </h1>
+              <p className="hero-subtitle text-lg text-muted-foreground mb-8 max-w-xl">
+                Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.
+              </p>
+              <div className="hero-buttons flex flex-wrap gap-4">
+                <Link to="/donate" className="btn-primary transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  Donate Now
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/about" className="btn-secondary transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative hidden lg:block">
+              <div className="hero-image relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={getcleanwater}
+                  alt="African children drinking clean water"
+                  className="w-full h-[500px] object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-primary rounded-2xl -z-0 animate-pulse" />
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-secondary rounded-2xl -z-0 animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Stats */}
+      <section className="py-12 bg-primary">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {impactStats.map((stat, index) => (
+              <div
+                key={index}
+                className="stat-item text-center text-primary-foreground"
+              >
+                <div className="stat-icon">
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 opacity-80" />
+                </div>
+                <div className="font-serif text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
+                <div className="text-sm opacity-80">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Preview */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="about-image relative">
+              <img
+                src={communitywater}
+                alt="Community water project"
+                className="rounded-2xl shadow-lg w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div className="absolute -bottom-4 -right-4 card-item bg-card p-6 rounded-xl shadow-lg max-w-xs">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
+                    <Heart className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-serif font-bold text-2xl text-foreground">10+</div>
+                    <div className="text-sm text-muted-foreground">Years of Service</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="about-content">
+              <span className="text-primary font-medium text-sm uppercase tracking-wider">Who We Are</span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
+                Making a Difference, One Drop at a Time
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Clean Water Ndigbo was founded with a simple yet powerful vision: to ensure every Igbo community has access to clean, safe drinking water. We believe that water is a fundamental human right, and no community should be denied this basic necessity.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {['Sustainable water solutions', 'Community-driven approach', 'Transparent operations', 'Long-term impact focus'].map((item, i) => (
+                  <li key={i} className="card-item flex items-center gap-3 text-foreground transition-all duration-300 hover:translate-x-2">
+                    <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link to="/about" className="btn-primary transition-all duration-300 hover:shadow-lg hover:scale-105">
+                Read Our Story
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Do Preview */}
+      <section className="section-padding bg-muted/50">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-12 animate-fadeIn">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">Our Work</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+              What We Do
+            </h2>
+            <p className="text-muted-foreground">
+              We implement comprehensive water projects that address the unique needs of each community we serve.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="feature-card bg-card p-6 rounded-xl shadow-sm border border-border"
+              >
+                <div className="feature-icon w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Droplets className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-serif font-semibold text-lg text-foreground mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10 animate-fadeIn">
+            <Link to="/what-we-do" className="btn-secondary transition-all duration-300 hover:shadow-lg hover:scale-105">
+              Learn More About Our Work
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-padding bg-primary relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
+        </div>
+        <div className="container-custom relative z-10">
+          <div className="cta-content text-center max-w-3xl mx-auto">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
+              Join Us in Making Clean Water Accessible
+            </h2>
+            <p className="text-primary-foreground/80 text-lg mb-8">
+              Your support can help us bring clean water to more communities. Every donation, no matter the size, makes a difference in someone's life.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/donate" className="bg-background text-primary px-8 py-4 rounded-lg font-medium transition-all duration-300 hover:bg-background/90 hover:shadow-lg hover:scale-105 inline-flex items-center gap-2">
+                Make a Donation
+                <Heart className="w-4 h-4" />
+              </Link>
+              <Link to="/contact" className="border-2 border-primary-foreground text-primary-foreground px-8 py-4 rounded-lg font-medium transition-all duration-300 hover:bg-primary-foreground/10 hover:shadow-lg hover:scale-105">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Home;
