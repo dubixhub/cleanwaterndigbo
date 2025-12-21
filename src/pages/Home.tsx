@@ -206,16 +206,33 @@ const Home = () => {
         .card-item:nth-child(2) { animation-delay: 0.15s; }
         .card-item:nth-child(3) { animation-delay: 0.3s; }
         .card-item:nth-child(4) { animation-delay: 0.45s; }
+
+        .hero-section {
+          min-height: 90vh;
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            min-height: 60vh;
+            background-attachment: scroll;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-section {
+            min-height: 50vh;
+          }
+        }
       `}</style>
 
       {/* Hero Section */}
       <section 
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+        className="hero-section relative flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${heroImages[currentImageIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
           transition: 'background-image 1s ease-in-out',
         }}
       >
@@ -226,23 +243,23 @@ const Home = () => {
         <div className="decorator-circle absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl z-5" />
         <div className="decorator-circle absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-5" />
         
-        <div className="container-custom relative z-10 text-center max-w-3xl">
-          <span className="hero-subtitle inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary/90 rounded-full text-primary-foreground text-sm font-medium mb-6">
-            <Droplets className="w-4 h-4" />
+        <div className="container-custom relative z-10 text-center max-w-3xl px-4 md:px-6">
+          <span className="hero-subtitle inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-primary/90 rounded-full text-primary-foreground text-xs md:text-sm font-medium mb-4 md:mb-6">
+            <Droplets className="w-3 h-3 md:w-4 md:h-4" />
             Clean Water for All
           </span>
-          <h1 className="hero-title font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          <h1 className="hero-title font-serif text-2xl md:text-4xl lg:text-6xl font-bold text-white leading-tight mb-4 md:mb-6">
             Bringing <span className="text-yellow-300">Clean Water</span> to Igbo Communities
           </h1>
-          <p className="hero-subtitle text-lg text-gray-100 mb-8">
+          <p className="hero-subtitle text-sm md:text-lg text-gray-100 mb-6 md:mb-8 px-2">
             Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.
           </p>
-          <div className="hero-buttons flex flex-wrap gap-4 justify-center">
-            <Link to="/donate" className="btn-primary transition-all duration-300 hover:shadow-lg hover:scale-105">
+          <div className="hero-buttons flex flex-wrap gap-2 md:gap-4 justify-center">
+            <Link to="/donate" className="btn-primary text-xs md:text-sm transition-all duration-300 hover:shadow-lg hover:scale-105">
               Donate Now
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
             </Link>
-            <Link to="/about" className="btn-secondary transition-all duration-300 hover:shadow-lg hover:scale-105">
+            <Link to="/about" className="btn-secondary text-xs md:text-sm transition-all duration-300 hover:shadow-lg hover:scale-105">
               Learn More
             </Link>
           </div>
