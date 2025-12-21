@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
-import logo from '@/images/logo.png';
+import logo1 from '@/images/logo1.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
-              <img src={logo} alt="Clean Water Ndigbo" className="w-36 md:w-44 lg:w-48 h-auto object-contain" />
+              <img src={logo1} alt="Clean Water Ndigbo" className="w-36 md:w-44 lg:w-48 h-auto object-contain" />
             </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Bringing clean, safe, and sustainable water solutions to Igbo communities across Nigeria.
