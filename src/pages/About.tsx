@@ -78,27 +78,28 @@ diseases and improve overall public health
       {/* Founder Section */}
       <section className="section-padding bg-muted/50">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="relative">
               <div className="relative z-10">
                 <img
                   src={mrsngozi}
                   alt="Founder of Clean Water Ndigbo"
-                  className="rounded-2xl shadow-lg w-full h-[500px] object-cover"
+                  className="rounded-2xl shadow-lg w-full h-[300px] md:h-[500px] object-cover"
                 />
               </div>
               <div className="absolute -top-4 -right-4 w-48 h-48 bg-primary/20 rounded-2xl -z-0" />
             </div>
             
-            <div className="order-1 lg:order-2">
+            <div>
               <span className="text-primary font-medium text-sm uppercase tracking-wider">Founder</span>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
                 Mrs Ngozi Cordelia Nwankwo
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Mrs Ngozi Cordelia Nwankwo, a native of Anambra State, founded Clean Water Ndigbo after witnessing firsthand the devastating effects of water scarcity in his home village. Growing up, he watched his mother and sisters trek miles daily to fetch water from a distant, often contaminated stream.
-                </p>
+               3. Lady Ngozi Cordelia Nwankwo a Philanthropist is the FOUNDER of non-profit Charity Clean Water for Ndigbo
+4. The clean water movement is to bring clean water to the remotest part of Igboland
+lacking access to clean, safe water.</p>
                 <p>
                    Mrs Nwankwo returned home with a mission: to ensure no Igbo community would suffer from lack of clean water.
                 </p>
