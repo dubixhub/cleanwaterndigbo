@@ -26,10 +26,10 @@ const Home = () => {
   }, [heroImages.length]);
 
   const impactStats = [
-    { icon: Droplets, value: '20+', label: 'Water Projects' },
-    { icon: Users, value: '1,000+', label: 'Lives Impacted' },
+    { icon: Droplets, value: '150+', label: 'Water Projects' },
+    { icon: Users, value: '50,000+', label: 'Lives Impacted' },
     { icon: MapPin, value: '75+', label: 'Communities Served' },
-    { icon: Heart, value: '100+', label: 'Volunteers' },
+    { icon: Heart, value: '1,000+', label: 'Volunteers' },
   ];
 
   const features = [
@@ -322,19 +322,19 @@ const Home = () => {
       </section>
 
       {/* Impact Stats */}
-      <section className="py-12 bg-primary">
+      <section className="py-8 md:py-12 bg-primary">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
             {impactStats.map((stat, index) => (
               <div
                 key={index}
                 className="stat-item text-center text-primary-foreground"
               >
                 <div className="stat-icon">
-                  <stat.icon className="w-8 h-8 mx-auto mb-3 opacity-80" />
+                  <stat.icon className="w-5 h-5 md:w-8 md:h-8 mx-auto mb-2 md:mb-3 opacity-80" />
                 </div>
-                <div className="font-serif text-3xl md:text-4xl font-bold mb-1">{stat.value}</div>
-                <div className="text-sm opacity-80">{stat.label}</div>
+                <div className="font-serif text-lg md:text-4xl font-bold mb-1">{stat.value}</div>
+                <div className="text-xs md:text-sm opacity-80">{stat.label}</div>
               </div>
             ))}
           </div>
