@@ -1,0 +1,49 @@
+# Apache Configuration for API
+# Handles URL rewriting, security, and CORS
+
+# Enable rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Route all requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Security: Deny access to sensitive files
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^\.git">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set PHP error handling
+php_flag display_errors Off
+php_flag log_errors On
+
+# Set max upload size (for future file uploads if needed)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+# Enable CORS headers (already handled in PHP, but good to have as backup)
+<IfModule mod_headers.c>
+    # Allow from specific origins (set in PHP for dynamic control)
+    Header add Access-Control-Allow-Methods "POST, OPTIONS"
+    Header add Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# Protect against common attacks
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
