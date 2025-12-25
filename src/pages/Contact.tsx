@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
-import Layout from '@/components/layout/Layout';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from "lucide-react";
+import Layout from "@/components/layout/Layout";
+import { toast } from "sonner";
+import { submitContactForm } from "@/lib/api";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -17,42 +18,61 @@ const Contact = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
-      toast.error('Please fill in all required fields');
+      toast.error("Please fill in all required fields");
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Call the real API
+      const response = await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || "Contact Form Submission",
+        message: formData.message,
+      });
+
+      if (response.success) {
+        setIsSubmitted(true);
+        toast.success(response.message || "Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        toast.error(
+          response.message || "Failed to send message. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error(
+        "An error occurred. Please try again or contact us directly."
+      );
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      toast.success('Message sent successfully! We\'ll get back to you soon.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Our Office',
-      details: ['4616 Stargazer Drive, Plano Texas 75024 Texas, USA'],  
+      title: "Our Office",
+      details: ["4616 Stargazer Drive, Plano Texas 75024 Texas, USA"],
     },
     {
       icon: Phone,
-      title: 'Phone',
-      details: ['+1 214 4050 380'],
+      title: "Phone",
+      details: ["+1 214 4050 380"],
     },
     {
       icon: Mail,
-      title: 'Email',
-      details: ['info@cleanwaterndigbo.org', 'support@cleanwaterndigbo.org'],
+      title: "Email",
+      details: ["info@cleanwaterndigbo.org", "support@cleanwaterndigbo.org"],
     },
     {
       icon: Clock,
-      title: 'Office Hours',
-      details: ['Monday - Friday: 8am - 5pm', 'Saturday: 9am - 1pm'],
+      title: "Office Hours",
+      details: ["Monday - Friday: 8am - 5pm", "Saturday: 9am - 1pm"],
     },
   ];
 
@@ -70,7 +90,8 @@ const Contact = () => {
               Contact <span className="text-gradient">Us</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Have questions? Want to partner with us? We'd love to hear from you. Reach out and we'll respond as soon as possible.
+              Have questions? Want to partner with us? We'd love to hear from
+              you. Reach out and we'll respond as soon as possible.
             </p>
           </div>
         </div>
@@ -87,7 +108,8 @@ const Contact = () => {
                   Contact Information
                 </h2>
                 <p className="text-muted-foreground">
-                  Reach out to us through any of these channels. We're here to help.
+                  Reach out to us through any of these channels. We're here to
+                  help.
                 </p>
               </div>
 
@@ -101,7 +123,9 @@ const Contact = () => {
                       <item.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground mb-1">{item.title}</h3>
+                      <h3 className="font-medium text-foreground mb-1">
+                        {item.title}
+                      </h3>
                       {item.details.map((detail, i) => (
                         <p key={i} className="text-sm text-muted-foreground">
                           {detail}
@@ -129,7 +153,8 @@ const Contact = () => {
                       Message Sent!
                     </h3>
                     <p className="text-muted-foreground">
-                      Thank you for reaching out. We'll get back to you within 24 hours.
+                      Thank you for reaching out. We'll get back to you within
+                      24 hours.
                     </p>
                   </div>
                 ) : (
@@ -143,7 +168,9 @@ const Contact = () => {
                           type="text"
                           placeholder="Enter your name"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
                           required
                           className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
@@ -156,7 +183,9 @@ const Contact = () => {
                           type="email"
                           placeholder="Enter your email"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
                           required
                           className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
@@ -171,7 +200,9 @@ const Contact = () => {
                         type="text"
                         placeholder="What is this about?"
                         value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, subject: e.target.value })
+                        }
                         className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                       />
                     </div>
@@ -183,7 +214,9 @@ const Contact = () => {
                       <textarea
                         placeholder="How can we help you?"
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
                         required
                         rows={5}
                         className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
@@ -197,9 +230,24 @@ const Contact = () => {
                     >
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
-                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          <svg
+                            className="animate-spin h-5 w-5"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            />
                           </svg>
                           Sending...
                         </span>
