@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main # Deploy when pushing to main branch
+    paths-ignore:
+      - "api/**" # Don't trigger on API changes (has separate workflow)
   workflow_dispatch: # Allow manual deployment from GitHub Actions tab
 
 jobs:

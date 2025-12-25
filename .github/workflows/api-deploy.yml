@@ -1,0 +1,36 @@
+name: Deploy API to Namecheap Subdomain
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "api/**" # Only trigger when files in api/ folder change
+  workflow_dispatch: # Allow manual deployment
+
+jobs:
+  deploy-api:
+    name: Deploy API to api.cleanwaterndigbo.org
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy API via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          protocol: ftps
+          local-dir: ./api/
+          server-dir: /api.cleanwaterndigbo.org/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/logs/**
+            **/.env.php
+            .env.example.php
