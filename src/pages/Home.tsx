@@ -26,10 +26,10 @@ const Home = () => {
   }, [heroImages.length]);
 
   const impactStats = [
-    { icon: Droplets, value: '150+', label: 'Water Projects' },
-    { icon: Users, value: '50,000+', label: 'Lives Impacted' },
+    { icon: Droplets, value: '20+', label: 'Water Projects' },
+    { icon: Users, value: '1,000+', label: 'Lives Impacted' },
     { icon: MapPin, value: '75+', label: 'Communities Served' },
-    { icon: Heart, value: '1,000+', label: 'Volunteers' },
+    { icon: Heart, value: '100+', label: 'Volunteers' },
   ];
 
   const features = [
