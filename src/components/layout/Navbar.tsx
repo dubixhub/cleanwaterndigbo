@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="md:hidden flex items-center justify-between h-16">
           <div className="flex-1" />
           <Link to="/" className="group">
-            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[150px] h-auto group-hover:scale-110 transition-transform" />
+            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[180px] h-auto group-hover:scale-110 transition-transform" />
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
