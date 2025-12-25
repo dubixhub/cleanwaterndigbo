@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Heart, CreditCard, Building2, CheckCircle, ArrowRight, Droplets } from 'lucide-react';
+import { Heart, CheckCircle, ArrowRight, Droplets, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { toast } from 'sonner';
 
@@ -11,10 +11,17 @@ const Donate = () => {
     email: '',
     phone: '',
   });
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'transfer'>('card');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const presetAmounts = [5000, 10000, 25000, 50000, 100000];
+
+  const bankDetails = {
+    bankName: 'First Bank of Nigeria',
+    accountName: 'Clean Water Ndigbo Foundation',
+    accountNumber: '2023456789',
+    sortCode: '011151003',
+  };
 
   const handleAmountSelect = (value: number) => {
     setAmount(value);
@@ -35,7 +42,7 @@ const Donate = () => {
     }).format(value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleDone = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!amount || amount < 100) {
@@ -50,22 +57,44 @@ const Donate = () => {
 
     setIsProcessing(true);
 
-    // Simulate payment processing
-    setTimeout(() => {
-      setIsProcessing(false);
-      toast.success('Thank you for your donation! A confirmation email has been sent.');
-      // Reset form
-      setAmount('');
-      setCustomAmount('');
-      setDonorInfo({ name: '', email: '', phone: '' });
-    }, 2000);
-  };
+    try {
+      // Send donation data to backend
+      const response = await fetch('/api/donations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: amount,
+          name: donorInfo.name,
+          email: donorInfo.email,
+          phone: donorInfo.phone,
+          date: new Date().toISOString(),
+        }),
+      });
 
-  const bankDetails = {
-    bankName: 'First Bank of Nigeria',
-    accountName: 'Clean Water Ndigbo Foundation',
-    accountNumber: '2023456789',
-    sortCode: '011151003',
+      if (response.ok) {
+        // Show thank you popup
+        setShowThankYou(true);
+        
+        // Auto-hide popup after 4 seconds
+        setTimeout(() => {
+          setShowThankYou(false);
+        }, 4000);
+
+        // Reset form
+        setAmount('');
+        setCustomAmount('');
+        setDonorInfo({ name: '', email: '', phone: '' });
+      } else {
+        toast.error('Failed to process donation. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -98,7 +127,7 @@ const Donate = () => {
                 Make Your Donation
               </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleDone} className="space-y-6">
                 {/* Amount Selection */}
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-3">
@@ -173,90 +202,53 @@ const Donate = () => {
                   </div>
                 </div>
 
-                {/* Payment Method */}
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-3">
-                    Payment Method
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('card')}
-                      className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
-                        paymentMethod === 'card'
-                          ? 'border-primary bg-primary/5 text-primary'
-                          : 'border-border text-muted-foreground hover:border-primary/50'
-                      }`}
-                    >
-                      <CreditCard className="w-5 h-5" />
-                      <span className="font-medium">Card/Transfer</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('transfer')}
-                      className={`flex items-center justify-center gap-2 py-3 px-4 rounded-lg border-2 transition-all ${
-                        paymentMethod === 'transfer'
-                          ? 'border-primary bg-primary/5 text-primary'
-                          : 'border-border text-muted-foreground hover:border-primary/50'
-                      }`}
-                    >
-                      <Building2 className="w-5 h-5" />
-                      <span className="font-medium">Bank Details</span>
-                    </button>
+                {/* Bank Transfer Details */}
+                <div className="bg-muted/50 p-4 rounded-lg border border-border">
+                  <h4 className="font-medium text-foreground mb-3">Bank Transfer Details</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Bank Name:</span>
+                      <span className="font-medium text-foreground">{bankDetails.bankName}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Account Name:</span>
+                      <span className="font-medium text-foreground">{bankDetails.accountName}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Account Number:</span>
+                      <span className="font-medium text-foreground">{bankDetails.accountNumber}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Sort Code:</span>
+                      <span className="font-medium text-foreground">{bankDetails.sortCode}</span>
+                    </div>
                   </div>
+                  <p className="text-xs text-muted-foreground mt-3">
+                    After transferring, please send proof of payment to donations@cleanwaterndigbo.org
+                  </p>
                 </div>
 
-                {/* Bank Transfer Details */}
-                {paymentMethod === 'transfer' && (
-                  <div className="bg-muted/50 p-4 rounded-lg border border-border">
-                    <h4 className="font-medium text-foreground mb-3">Bank Transfer Details</h4>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Bank Name:</span>
-                        <span className="font-medium text-foreground">{bankDetails.bankName}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Account Name:</span>
-                        <span className="font-medium text-foreground">{bankDetails.accountName}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Account Number:</span>
-                        <span className="font-medium text-foreground">{bankDetails.accountNumber}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Sort Code:</span>
-                        <span className="font-medium text-foreground">{bankDetails.sortCode}</span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-3">
-                      After transferring, please send proof of payment to donations@cleanwaterndigbo.org
-                    </p>
-                  </div>
-                )}
-
-                {/* Submit Button */}
-                {paymentMethod === 'card' && (
-                  <button
-                    type="submit"
-                    disabled={isProcessing || !amount}
-                    className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isProcessing ? (
-                      <span className="flex items-center gap-2">
-                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Processing...
-                      </span>
-                    ) : (
-                      <>
-                        Donate {amount ? formatCurrency(Number(amount)) : 'Now'}
-                        <Heart className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                )}
+                {/* Done Button */}
+                <button
+                  type="submit"
+                  disabled={isProcessing || !amount}
+                  className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isProcessing ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Processing...
+                    </span>
+                  ) : (
+                    <>
+                      Done
+                      <Heart className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
               </form>
             </div>
 
@@ -332,6 +324,38 @@ const Donate = () => {
           </div>
         </div>
       </section>
+
+      {/* Thank You Popup */}
+      {showThankYou && (
+        <div className="fixed inset-0 flex items-center justify-center p-4 z-50 bg-black/50 animate-fade-in">
+          <div className="bg-card rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button
+              onClick={() => setShowThankYou(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            
+            <div className="flex justify-center mb-4">
+              <div className="bg-primary/10 rounded-full p-4">
+                <CheckCircle className="w-12 h-12 text-primary" />
+              </div>
+            </div>
+            
+            <h2 className="text-2xl font-serif font-bold text-center text-foreground mb-2">
+              Thank You!
+            </h2>
+            
+            <p className="text-center text-muted-foreground mb-4">
+              We appreciate your generous donation of {formatCurrency(Number(amount))}. Your contribution will help bring clean water to communities in need.
+            </p>
+            
+            <p className="text-center text-sm text-muted-foreground">
+              A confirmation email has been sent to <strong>{donorInfo.email}</strong>
+            </p>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };
