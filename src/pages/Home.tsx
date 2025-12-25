@@ -6,6 +6,10 @@ import cleanwater1 from '@/images/cleanwater1.jpg';
 import cleanwater2 from '@/images/cleanwater2.jpg';
 import cleanwater3 from '@/images/cleanwater3.jpg';
 import communitywater from '@/images/communitywater.jpg';
+import dirty1 from '@/images/dirty1.jpg';
+import dirty2 from '@/images/dirty2.jpg';
+import dirty3 from '@/images/dirty3.jpg';
+import dirty4 from '@/images/dirty4.jpg';
 
 
 const Home = () => {
@@ -44,6 +48,29 @@ const Home = () => {
     {
       title: 'Maintenance Programs',
       description: 'Training locals to maintain and repair water infrastructure independently.',
+    },
+  ];
+
+  const waterCrisisImages = [
+    {
+      image: dirty1,
+      title: 'Contaminated Sources',
+      description: 'Many communities rely on contaminated water sources including stagnant ponds and polluted streams that pose serious health risks to families.',
+    },
+    {
+      image: dirty2,
+      title: 'Limited Access',
+      description: 'Rural communities often travel miles daily to access water, spending countless hours on collection instead of education and work.',
+    },
+    {
+      image: dirty3,
+      title: 'Health Crisis',
+      description: 'Waterborne diseases affect children and adults alike, leading to illness, missed school days, and reduced productivity.',
+    },
+    {
+      image: dirty4,
+      title: 'Infrastructure Gaps',
+      description: 'Without proper water infrastructure, communities remain vulnerable to seasonal droughts and environmental contamination.',
     },
   ];
 
@@ -207,6 +234,20 @@ const Home = () => {
         .card-item:nth-child(3) { animation-delay: 0.3s; }
         .card-item:nth-child(4) { animation-delay: 0.45s; }
 
+        .crisis-card {
+          animation: fadeIn 0.6s ease-out;
+        }
+
+        .crisis-card:nth-child(1) { animation-delay: 0s; }
+        .crisis-card:nth-child(2) { animation-delay: 0.1s; }
+        .crisis-card:nth-child(3) { animation-delay: 0.2s; }
+        .crisis-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .crisis-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
         .hero-section {
           min-height: 90vh;
           background-size: cover;
@@ -300,6 +341,44 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Water Crisis Section */}
+      <section className="section-padding bg-red-50">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-red-600 font-medium text-sm uppercase tracking-wider">The Challenge</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+              The Water Crisis
+            </h2>
+            <p className="text-muted-foreground">
+              Millions in our communities struggle daily without access to clean water. This is the reality we're working to change.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {waterCrisisImages.map((item, index) => (
+              <div
+                key={index}
+                className="crisis-card bg-white rounded-xl shadow-md overflow-hidden border border-red-100 hover:shadow-lg transition-all duration-300"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h3 className="font-serif font-semibold text-lg text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Preview */}
       <section className="section-padding">
         <div className="container-custom">
@@ -310,17 +389,6 @@ const Home = () => {
                 alt="Community water project"
                 className="rounded-2xl shadow-lg w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105"
               />
-              <div className="absolute -bottom-4 -right-4 card-item bg-card p-6 rounded-xl shadow-lg max-w-xs">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
-                    <Heart className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-serif font-bold text-2xl text-foreground">10+</div>
-                    <div className="text-sm text-muted-foreground">Years of Service</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="about-content">
