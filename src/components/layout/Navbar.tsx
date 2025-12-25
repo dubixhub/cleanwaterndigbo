@@ -20,14 +20,30 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        {/* Mobile Header - Centered Logo */}
+        <div className="md:hidden flex items-center justify-between h-16">
+          <div className="flex-1" />
+          <Link to="/" className="group">
+            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[150px] h-auto group-hover:scale-110 transition-transform" />
+          </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex-1 flex justify-end p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Desktop Header */}
+        <div className="hidden md:flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="group">
             <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[200px] h-auto group-hover:scale-110 transition-transform" />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -48,15 +64,6 @@ const Navbar = () => {
               Donate Now
             </Link>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}
