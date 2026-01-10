@@ -103,8 +103,7 @@ diseases and improve overall public health
                   Born from a personal mission to transform lives across Igboland, Lady Ngozi established Clean Water Ndigbo with a singular vision: to bring sustainable access to clean, safe drinking water to the remotest corners of Igboland where communities have been left behind by development. She recognized that millions of people in these regions struggle daily without access to this essential resource, and she made it her life's calling to change that reality.
                 </p>
                 <p>
-                   The inspiration started when she saw children, adults drink, and cook with water from gutters, dirty pools, and even travel miles to get this dirty water.
- Children from illnesses caused by dirty water and poor sanitation due to lack of water
+                   The inspiration for this noble mission came when Lady Ngozi witnessed firsthand the harsh realities facing Igbo communities. She saw children, families, and entire villages forced to drink and cook with contaminated water from stagnant gutters, dirty pools, and other unsafe sources. She watched as people traveled miles each day just to collect water that would ultimately harm rather than sustain them. Most heartbreaking of all, she witnessed countless children suffering from preventable waterborne illnesses and compromised health due to lack of access to clean water and proper sanitation—illnesses that have robbed them of their childhood, education, and potential.
                 </p>
                 <p className="italic border-l-4 border-primary pl-4 py-2 bg-primary/5 rounded-r-lg">
                   "Water is life. When we give a community clean water, we give them health, dignity, and hope for a better future. This is my life's work, and together, we will reach every Igbo community in need."
