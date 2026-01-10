@@ -17,6 +17,29 @@ const Home = () => {
 
   const heroImages = [cleanwater1, cleanwater2, cleanwater3, communitywater];
 
+  const heroTexts = [
+    {
+      badge: 'Clean Water for All',
+      title: 'Bringing Clean Water to Igbo Communities',
+      description: 'Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.',
+    },
+    {
+      badge: 'Sustainable Solutions',
+      title: 'Building Water Security for Generations',
+      description: 'We construct and maintain boreholes and water purification systems that serve communities for decades to come.',
+    },
+    {
+      badge: 'Community Empowerment',
+      title: 'Educating Communities on Water Safety',
+      description: 'Through comprehensive hygiene education and maintenance training, we empower communities to take control of their water resources.',
+    },
+    {
+      badge: 'Making an Impact',
+      title: 'Transforming Lives Through Water Access',
+      description: 'Join us in our mission to ensure every family in Igbo communities has access to clean, safe water for a healthier future.',
+    },
+  ];
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
@@ -165,6 +188,18 @@ const Home = () => {
           animation: slideUpIn 0.8s ease-out 0.2s both;
         }
 
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
         .hero-buttons {
           animation: slideUpIn 0.8s ease-out 0.4s both;
         }
@@ -285,15 +320,19 @@ const Home = () => {
         <div className="decorator-circle absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-5" />
         
         <div className="container-custom relative z-10 text-center max-w-3xl px-4 md:px-6">
-          <span className="hero-subtitle inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-primary/90 rounded-full text-primary-foreground text-xs md:text-sm font-medium mb-4 md:mb-6">
+          <span className="hero-subtitle inline-flex items-center justify-center gap-2 px-3 md:px-4 py-2 bg-primary/90 rounded-full text-primary-foreground text-xs md:text-sm font-medium mb-4 md:mb-6 transition-all duration-500">
             <Droplets className="w-3 h-3 md:w-4 md:h-4" />
-            Clean Water for All
+            {heroTexts[currentImageIndex].badge}
           </span>
-          <h1 className="hero-title font-serif text-2xl md:text-4xl lg:text-6xl font-bold text-white leading-tight mb-4 md:mb-6">
-            Bringing <span className="text-yellow-300">Clean Water</span> to Igbo Communities
+          <h1 className="hero-title font-serif text-2xl md:text-4xl lg:text-6xl font-bold text-white leading-tight mb-4 md:mb-6 transition-all duration-500">
+            {heroTexts[currentImageIndex].title.split('Clean Water').length > 1
+              ? heroTexts[currentImageIndex].title.split('Clean Water').map((part, idx) => 
+                  idx === 0 ? part : <span key={idx}><span className="text-yellow-300">Clean Water</span>{part}</span>
+                )
+              : heroTexts[currentImageIndex].title}
           </h1>
-          <p className="hero-subtitle text-sm md:text-lg text-gray-100 mb-6 md:mb-8 px-2">
-            Clean Water Ndigbo is dedicated to providing safe, sustainable, and accessible water solutions to communities across Igbo land in Nigeria.
+          <p className="hero-subtitle text-sm md:text-lg text-gray-100 mb-6 md:mb-8 px-2 transition-all duration-500">
+            {heroTexts[currentImageIndex].description}
           </p>
           <div className="hero-buttons flex flex-wrap gap-2 md:gap-4 justify-center">
             <Link to="/donate" className="btn-primary text-xs md:text-sm transition-all duration-300 hover:shadow-lg hover:scale-105">
