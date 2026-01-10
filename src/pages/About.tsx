@@ -97,10 +97,11 @@ diseases and improve overall public health
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-             Lady Ngozi Cordelia Nwankwo a Philanthropist is the FOUNDER of non-profit Charity Clean Water for Ndigbo.
-             
- The clean water movement is to bring clean water to the remotest part of Igboland
-lacking access to clean, safe water.</p>
+                  Lady Ngozi Cordelia Nwankwo, a visionary philanthropist and passionate advocate for social change, is the Founder and driving force behind Clean Water Ndigbo. Her unwavering commitment to humanitarian work stems from a deep belief that access to clean water is not a luxury—it is a fundamental human right that every person deserves.
+                </p>
+                <p>
+                  Born from a personal mission to transform lives across Igboland, Lady Ngozi established Clean Water Ndigbo with a singular vision: to bring sustainable access to clean, safe drinking water to the remotest corners of Igboland where communities have been left behind by development. She recognized that millions of people in these regions struggle daily without access to this essential resource, and she made it her life's calling to change that reality.
+                </p>
                 <p>
                    The inspiration started when she saw children, adults drink, and cook with water from gutters, dirty pools, and even travel miles to get this dirty water.
  Children from illnesses caused by dirty water and poor sanitation due to lack of water
