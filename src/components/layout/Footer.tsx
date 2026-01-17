@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
-              <img src={logo1} alt="Clean Water Ndigbo" className="w-[250px] h-auto object-contain" />
+              <img src={logo1} alt="Clean Water Ndigbo" className="w-[180px] h-auto object-contain" />
             </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Bringing clean, safe, and sustainable water solutions to Igbo communities across Nigeria.

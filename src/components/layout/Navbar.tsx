@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="md:hidden flex items-center justify-between h-16">
           <div className="flex-1" />
           <Link to="/" className="group">
-            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[250px] h-auto group-hover:scale-110 transition-transform" />
+            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[180px] h-auto group-hover:scale-110 transition-transform" />
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="group">
-            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[200px] h-auto group-hover:scale-110 transition-transform" />
+            <img src={logo} alt="Clean Water Ndigbo Logo" className="w-[140px] h-auto group-hover:scale-110 transition-transform" />
           </Link>
 
           {/* Desktop Navigation */}
