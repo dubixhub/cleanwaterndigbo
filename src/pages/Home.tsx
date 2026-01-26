@@ -380,40 +380,116 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Water Crisis Section */}
-      <section className="section-padding bg-red-50">
+      {/* Who We Are Section */}
+      <section className="section-padding">
         <div className="container-custom">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-red-600 font-medium text-sm uppercase tracking-wider">The Challenge</span>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">About Us</span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-              The Water Crisis
+              Who We Are
             </h2>
             <p className="text-muted-foreground">
-              Millions in our communities struggle daily without access to clean water. This is the reality we're working to change.
+              Learn about our story, vision, and mission to bring clean water to Igbo communities.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {waterCrisisImages.map((item, index) => (
-              <div
-                key={index}
-                className="crisis-card bg-white rounded-xl shadow-md overflow-hidden border border-red-100 hover:shadow-lg transition-all duration-300"
-              >
+          {/* Our Story */}
+          <div className="mb-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="about-image relative">
                 <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-48 object-cover"
+                  src={communitywater}
+                  alt="Our Story - Clean Water Ndigbo"
+                  className="rounded-2xl shadow-lg w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105"
                 />
-                <div className="p-5">
-                  <h3 className="font-serif font-semibold text-lg text-foreground mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
               </div>
-            ))}
+              <div className="about-content">
+                <span className="text-primary font-medium text-sm uppercase tracking-wider">Our Journey</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  Our Story
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Clean Water Ndigbo was founded with a simple yet powerful vision: to ensure every Igbo community has access to clean, safe drinking water. We believe that water is a fundamental human right, and no community should be denied this basic necessity.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Our organization started as a grassroots initiative to address the water crisis affecting rural Igbo communities. Through years of dedicated work, we have grown into a trusted partner for sustainable water solutions, serving over 50,000 people across 75+ communities.
+                </p>
+                <ul className="space-y-3">
+                  {['Community-driven approach', 'Transparent operations', 'Sustainable practices', 'Local empowerment'].map((item, i) => (
+                    <li key={i} className="card-item flex items-center gap-3 text-foreground transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Our Vision */}
+          <div className="mb-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="about-content order-2 lg:order-1">
+                <span className="text-primary font-medium text-sm uppercase tracking-wider">Our Future</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  Our Vision
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  We envision a future where every individual in Igbo communities has unrestricted access to clean, safe, and sustainable water sources. A future where water scarcity is no longer a barrier to health, education, and economic development.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Our vision extends beyond infrastructure. We see empowered communities managing their water resources independently, with improved health outcomes, children attending school regularly, and communities thriving without the burden of water-related hardships.
+                </p>
+                <ul className="space-y-3">
+                  {['Universal water access', 'Environmental sustainability', 'Health improvement', 'Economic opportunity'].map((item, i) => (
+                    <li key={i} className="card-item flex items-center gap-3 text-foreground transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="about-image relative order-1 lg:order-2">
+                <img
+                  src={cleanwater2}
+                  alt="Our Vision - Clean Water Access"
+                  className="rounded-2xl shadow-lg w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Our Mission */}
+          <div className="mb-16">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="about-image relative">
+                <img
+                  src={cleanwater3}
+                  alt="Our Mission - Community Impact"
+                  className="rounded-2xl shadow-lg w-full h-[450px] object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="about-content">
+                <span className="text-primary font-medium text-sm uppercase tracking-wider">Our Purpose</span>
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  Our Mission
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Our mission is to design, construct, and maintain sustainable water infrastructure that serves Igbo communities with dignity and effectiveness. We partner with local communities to understand their unique needs and implement solutions that stand the test of time.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  We are committed to education, training community members to maintain water systems, promoting hygiene practices, and creating awareness about water conservation. Through our holistic approach, we ensure lasting impact that extends far beyond the initial project.
+                </p>
+                <ul className="space-y-3">
+                  {['Infrastructure development', 'Community training', 'Hygiene education', 'Long-term sustainability'].map((item, i) => (
+                    <li key={i} className="card-item flex items-center gap-3 text-foreground transition-all duration-300 hover:translate-x-2">
+                      <CheckCircle className="w-5 h-5 text-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -454,8 +530,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* What We Do Preview */}
       <section className="section-padding bg-muted/50">
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-12 animate-fadeIn">
@@ -519,6 +593,44 @@ const Home = () => {
                 Contact Us
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Water Crisis Section */}
+      <section className="section-padding bg-red-50">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-red-600 font-medium text-sm uppercase tracking-wider">The Challenge</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+              The Water Crisis
+            </h2>
+            <p className="text-muted-foreground">
+              Millions in our communities struggle daily without access to clean water. This is the reality we're working to change.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {waterCrisisImages.map((item, index) => (
+              <div
+                key={index}
+                className="crisis-card bg-white rounded-xl shadow-md overflow-hidden border border-red-100 hover:shadow-lg transition-all duration-300"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h3 className="font-serif font-semibold text-lg text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
